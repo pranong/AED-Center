@@ -4,7 +4,23 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import VueFire from 'vuefire'
-import './firebase'
+import './components/firebase'
+import 'bootstrap/dist/css/bootstrap.css'
+import jQuery from 'jQuery'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'jquery/dist/jquery.min.js'
+import 'bootstrap/dist/js/bootstrap.min.js'
+import * as VueGoogleMaps from 'vue2-google-maps'
+global.jQuery = jQuery
+global.$ = jQuery
+// let Bootstrap = require('bootstrap')
+
+Vue.use(VueGoogleMaps, {
+  load: {
+    key: 'AIzaSyC833ACqvQDf0YfbwsSqPiX2Am7zz1wxN0',
+    libraries: 'places'
+  }
+})
 
 Vue.use(VueFire)
 Vue.config.productionTip = false
@@ -14,5 +30,6 @@ new Vue({
   el: '#app',
   router,
   template: '<App/>',
-  components: { App }
+  components: { App },
+  render: h => h(App)
 })

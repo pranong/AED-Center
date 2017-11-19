@@ -10,4 +10,5 @@ const app = initializeApp({
 })
 
 export const db = app.database()
-export const deviceRef = db.ref('/')
+export const deviceRef = db.ref('Device')
+export const totalRef = db.ref('total')
