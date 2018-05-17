@@ -1,7 +1,7 @@
 import { initializeApp } from 'firebase'
 
 const app = initializeApp({
-  apiKey: 'AIzaSyDG26hdQM4SsoWf85qEVQqfpbOGtDq1sCc',
+  apiKey: 'AIzaSyBBIohzEGezqgyRer-v_y-oBy4VqJIUjuk',
   authDomain: 'sensorsdatabase.firebaseapp.com',
   databaseURL: 'https://sensorsdatabase.firebaseio.com',
   projectId: 'sensorsdatabase',
@@ -9,6 +9,10 @@ const app = initializeApp({
   messagingSenderId: '716682422710'
 })
 
+export const auth = app.auth()
 export const db = app.database()
 export const deviceRef = db.ref('Device')
-export const totalRef = db.ref('total')
+export const eventRef = db.ref('Event')
+export const notiRef = db.ref('noti/1')
+export const noti2Ref = db.ref('noti/2')
+export const numnotiRef = db.ref('numnoti')

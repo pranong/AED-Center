@@ -11,9 +11,20 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'jquery/dist/jquery.min.js'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import * as VueGoogleMaps from 'vue2-google-maps'
+import VueRouter from 'vue-router'
 global.jQuery = jQuery
 global.$ = jQuery
 // let Bootstrap = require('bootstrap')
+Vue.use(VueRouter)
+
+// const routes = [
+//   {Path: '/components/imgInfo', component: 'imgInfo'}
+// ]
+
+// const router = new VueRouter({
+//   routes,
+//   mode: 'history'
+// })
 
 Vue.use(VueGoogleMaps, {
   load: {
