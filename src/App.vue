@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%">
             <div class="navbar-header">
               <a class="navbar-brand" href="#" style="height: 70px;margin-right: 0px;padding-top: 5px;padding-right: 5px;padding-left: 5px;padding-bottom: 5px;"><router-link to="/"><img src="./components/img/icon.png" alt="" width="60" class="imgnav"></router-link></a>
             </div>
@@ -15,6 +15,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#"><router-link to="/Dashboard"><span class="glyphicon glyphicon-file"></span> <b style="font-family: 'Open Sans', sans-serif;">DASHBOARD</b></router-link></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><router-link to="/addusr"><span class="glyphicon glyphicon-file"></span> <b style="font-family: 'Open Sans', sans-serif;">ADD USER</b></router-link></a>
               </li>
             </ul>
           </div>

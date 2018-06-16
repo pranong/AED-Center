@@ -20,6 +20,7 @@
         :position="toPosition(events.lat, events.lng)"
         :clickable="true"
         :draggable="false"
+        :icon.sync="icon"
         @click="toggleInfoWindow(m,i)">
 
         <gmap-info-window
@@ -100,42 +101,42 @@
               <b style="font-family: 'Quicksand', sans-serif;">Humidity : {{devices.humidity}}</b><br>
             </div>
 
-            <div v-if="devices.status == '1'">
+            <div style="margin-bottom: 5px" v-if="devices.status == '1'">
               <b style="font-family: 'Quicksand', sans-serif;">Status : Available&nbsp;&nbsp;&nbsp;&nbsp;</b>
               <img src="./img/gc.png">
               <hr>
               <div v-if="devices.lock == '1'">
                 <button class="btn btn-success" @click="setopen(index)"><b style="font-family: 'Open Sans', sans-serif;">Open</b></button>
-                <img src="./img/un2.png">
+                <img style="float: right" src="./img/un2.png">
               </div>
               <div v-else>
                 <button class="btn btn-warning" @click="setclose(index)"><b style="font-family: 'Open Sans', sans-serif;">Close</b></button>
-                <img src="./img/un.png">
+                <img style="float: right" src="./img/un.png">
               </div>
             </div>
 
-            <div v-else>
+            <div style="margin-bottom: 5px" v-else>
               <b style="font-family: 'Quicksand', sans-serif;">Status : Unavailable&nbsp;&nbsp;&nbsp;&nbsp;</b>
               <img src="./img/rc.png">
               <hr>
               <div v-if="devices.lock == '1'">
                 <button class="btn btn-success" @click="setopen(index)"><b style="font-family: 'Open Sans', sans-serif;">Open</b></button>
-                <img src="./img/un2.png">
+                <img style="float: right" src="./img/un2.png">
               </div>
               <div v-else>
                 <button class="btn btn-warning" @click="setclose(index)"><b style="font-family: 'Open Sans', sans-serif;">Close</b></button>
-                <img src="./img/un.png">
+                <img style="float: right" src="./img/un.png">
               </div>
             </div>
 
             <div v-if="devices.enablepass == '0'">
               <button class="btn btn-success" @click="setenable(index)"><b style="font-family: 'Open Sans', sans-serif;">Enable Pass</b></button>
-              <img src="./img/unable.png" height="20">
+              <img style="float: right" src="./img/unable.png" height="25">
             </div>
 
             <div v-else>
               <button class="btn btn-danger" @click="setdisable(index)"><b style="font-family: 'Open Sans', sans-serif;">Disable Pass</b></button>
-              <img src="./img/enable.png" height="20">
+              <img style="float: right" src="./img/enable.png" height="25">
             </div>
           </div>
           
@@ -172,7 +173,8 @@ export default {
       infowindow: true,
       zoom: 15,
       date: '',
-      time: ''
+      time: '',
+      icon: {url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'}
     }
   },
   firebase: {

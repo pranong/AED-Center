@@ -5,26 +5,6 @@
         <div class="hidden" v-for="(devices, index) of device" v-bind:key="devices['.key']">
           {{total = index+1}}
         </div>
-        <div class="hidden" v-for="(item, index) in device" :key="device['.key']">
-          <div v-if="item.status == 1">
-            {{totalstat = index+1}}
-          </div>
-        </div>
-        <div class="hidden" v-for="(item, index) in device">
-          <div v-if="item.lock == 1">
-            {{totallock = index+1}}
-          </div>
-        </div>
-        <div class="hidden" v-for="(item, index) in device">
-          <div v-if="item.battery < 25">
-            {{totalbatt = index+1}}
-          </div>
-        </div>
-        <div class="hidden" v-for="(devices, index) of device" v-bind:key="devices['.key']">
-          <div v-if="devices.enablepass == 0">
-            {{totaldis = index+1}}
-          </div>
-        </div>
         <h3 style="font-family: 'Open Sans', sans-serif;"><span class="glyphicon glyphicon-info-sign"></span> Summary<hr></h3>
         <div class="rounded row"  style="margin-left: 10px;margin-bottom: 20px;margin-right: 10px;background-color: white;">
           <div class="col" style="border-right: 1px solid #ccc;"><br>
@@ -39,16 +19,17 @@
           <div class="col">
             <br>
             <b style="font-family: 'Open Sans', sans-serif;font-size: 20px;">{{total}} Devices</b><hr style="margin-top: 10px;margin-bottom: 10px;">
-            <b style="font-family: 'Open Sans', sans-serif;">{{totalstat}} Devices</b><br>
-            <b style="font-family: 'Open Sans', sans-serif;">{{total-totalstat}} Devices</b><br>
-            <b style="font-family: 'Open Sans', sans-serif;">{{totallock}} Devices</b><br>
-            <b style="font-family: 'Open Sans', sans-serif;">{{total-totallock}} Devices</b><br>
-            <b style="font-family: 'Open Sans', sans-serif;">{{totalbatt}} Devices</b><br>
-            <b style="font-family: 'Open Sans', sans-serif;">{{totaldis}} Devices</b><br><br>
+            <b style="font-family: 'Open Sans', sans-serif;">{{stat}} Devices</b><br>
+            <b style="font-family: 'Open Sans', sans-serif;">{{total-stat}} Devices</b><br>
+            <b style="font-family: 'Open Sans', sans-serif;">{{lock}} Devices</b><br>
+            <b style="font-family: 'Open Sans', sans-serif;">{{total-lock}} Devices</b><br>
+            <b style="font-family: 'Open Sans', sans-serif;">{{batt}} Devices</b><br>
+            <b style="font-family: 'Open Sans', sans-serif;">{{dis}} Devices</b><br><br>
           </div>
         </div>
       </div>
       <div class="col-4" align="right" style="margin-right: 250px;margin-top: 190px;">
+         <a class="nav-link" href="#"><router-link to="/log"> <b style="font-family: 'Open Sans', sans-serif;">Calling History</b></router-link></a>
         <label for="sel1"> <span class="glyphicon glyphicon-filter"></span><b style="font-family: 'Open Sans', sans-serif;"> Select Filter (select one):</b></label>
         <select class="form-control" v-model="filter" style="width: 150px;height: 30px">
           <option>Default</option>
@@ -416,7 +397,7 @@
 </template>
 
 <script>
-  import {deviceRef} from './firebase'
+  import {userRef, deviceRef} from './firebase'
   import swal from 'sweetalert2'
 
   export default {
@@ -435,11 +416,58 @@
       }
     },
     firebase: {
+      user: userRef,
       device: deviceRef
     },
     mounted () {
       this.fillData()
       console.log('>>>>>', this.device)
+    },
+    computed: {
+      stat: function () {
+        this.totalstat = 0
+        this.device.forEach(log => {
+          if (log.status === 1) {
+            this.totalstat = this.totalstat + 1
+          }
+          console.log(this.totalstat, 58)
+        })
+        console.log(this.totalstat)
+        return this.totalstat
+      },
+      lock: function () {
+        this.totallock = 0
+        this.device.forEach(log => {
+          if (log.lock === 1) {
+            this.totallock = this.totallock + 1
+          }
+          console.log(this.totallock, 58)
+        })
+        console.log(this.totallock)
+        return this.totallock
+      },
+      batt: function () {
+        this.totalbatt = 0
+        this.device.forEach(log => {
+          if (log.battery <= 20) {
+            this.totalbatt = this.totalbatt + 1
+          }
+          console.log(this.totalbatt, 'batt')
+        })
+        console.log(this.totalbatt)
+        return this.totalbatt
+      },
+      dis: function () {
+        this.totaldis = 0
+        this.device.forEach(log => {
+          if (log.enablepass === 0) {
+            this.totaldis = this.totaldis + 1
+          }
+          console.log(this.totaldis, 58)
+        })
+        console.log(this.totaldis)
+        return this.totaldis
+      }
     },
     created () {
       setTimeout(() => {
